@@ -1,0 +1,182 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+        <title>Проверка рабочего места</title>
+    </head>
+    <body>
+    	<a href="{% url 'asdrm_main' %}" alt="На главную" style="COLOR: white; TEXT-DECORATION: none; CURSOR: pointer;"><div class="page-header">
+            <h1 style="text-align:center"><br/>
+                <span id="page-header" style="text-transform: uppercase">Курсовой проект</span>
+                <br/><br/>
+                <span style="font-size:smaller">«Автоматизированная система дистанционной диагностики рабочего места пользователя диспетчерского центра управления железнодорожными перевозками»</span>
+                <span style="display: none; font-size:smaller">«Автоматизированная информационная система поддержки принятия решений системного администратора ЕДЦУ</span><br/><br/>
+            </h1>
+		</div></a><br/>
+		<div>
+			<table class="TransparentTable"><tbody>
+				<tr>
+
+					<td class="noborder"><b>Здравствуйте, <span class="username">
+						{% if user.is_authenticated %}
+							<a href="/admin/">{{ user.username }}</a></span>!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						{% else %}
+							Аноним</span>, Вам необходимо
+						{% endif %}
+					</b></td>
+					<td class="noborder"><b>
+						{% if user.is_authenticated %}
+							<a href="{% url 'asdrm_testsuite_list' %}">Аналитика (список выполненных проверок)</a></br>
+							<a href="/admin/">Администрирование сервера</a></br>
+							<a href="/admin/logout/">Выйти</a>
+						{% else %}
+							<a href="/admin/">Представиться</a>, чтобы начать пользоваться системой диагностики.
+						{% endif %}
+						</br></b></td>
+				</tr>
+			</tbody></table>
+		</div><br/>
+		<div style="padding: 0px; margin: 0px; {% if not user.is_authenticated %} display: none; {% endif %} "  id="headdiv">
+			<table cellpadding="4" cellspacing="4" style=""><tbody>
+				<tr>
+					<td class="noborder" style="text-wrap: none">IP, РМ или полное сетевое имя:</td>
+					<td class="noborder"><input id="IP" style="width: 190px; visibility: visible;" type="text" value="" onkeypress="KeyStart(event)" tabindex="0"></td>
+					<td class="noborder" style=""><input id="StartButton" type="button" value="Диагностировать" onclick="Start()" class="but"></td>
+				</tr>
+			</tbody></table>
+		</div>
+		<div {% if not testParamTitles %} style="display: none;" {% endif %}>
+			<script type="text/javascript" language="javascript">
+				IP = '';
+				IPField = GetObject("IP");
+				function Start() {
+				    IP = document.getElementById("IP").value.toString().trim();
+					if (!CheckIP()) {
+						alert("Недопустимый адрес")
+						return;
+					}
+					IP = document.getElementById("IP").value.toString().trim();
+					window.location.href  = '/?ip='+IP;
+				}
+				function KeyStart(e) {
+					if (e.keyCode == 13) {
+						Start()
+					}
+				}
+				function CheckIP() {
+					IP = IP.replace(/[,\/ ю]/gi, ".").trim();
+					var ret = true;
+					if (IP.substr(0, 3) == "172") {
+						alert("Диагностика сети 172 невозможна.\rПопробуйте использовать полное сетевое имя ")
+						ret = false;
+					}
+					var reg = /(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|([\w_-]{1,15}\.\w{3,8}\.oao\.rzd)/
+
+					var r = reg.exec(IP)
+					if (r == null) {
+						ret = false
+					}
+					else {
+						reg = /127\.\d{1,3}\.\d{1,3}\.\d{1,3}/
+						if (reg.test(r)) {
+							ret = false;
+						}
+						else {
+							IPField.value = IP = r[0];
+						}
+					}
+					return ret;
+				}
+				function GetObject(Name) {
+					return document.getElementById(Name+"")
+				}
+				function ShowDescription(ID) {
+					var d = GetObject(ID + "Description")
+					var i = GetObject(ID + "Img")
+
+
+					if (d.style.display == "none") {
+						d.style.display = "block"
+						i.src = "{% static 'img/minus.png' %}"
+					}
+					else {
+						d.style.display = "none"
+						i.src = "{% static 'img/plus.png' %}"
+					}
+				}
+			</script>
+	<!--
+	-->
+			<table class="TableResult">
+				<h2>Результаты проверки РМ - {{ testsuite.ipv4 }}</h2>
+				<!--
+				<caption class="TableResultCaption" >Результаты проверки</caption>
+				-->
+				<thead>
+					<tr>
+						<th class="td1">Диагностируемый параметр</th>
+						<th class="td11"></th>
+						<th class="td2">Статус проверки</th>
+						<th class="td3">Результаты выполнения диагностики</th>
+						<th class="td4">Рекомендуемые действия</th>
+					</tr>
+				</thead>
+				<tbody id="MainTable">
+				{% for testParamTitle in testParamTitles %}
+					<tr>
+						<td class="title_block" colspan="5">{{ testParamTitle }}</td>
+					</tr>
+					{% for testSuiteCase in testSuiteCases %}
+						{% if testSuiteCase.parameter.title == testParamTitle %}
+						<tr id='{{testSuiteCase.parameter.id}}'>
+							<td class="td1">
+								<div><b> {{ testSuiteCase.parameter.name }}</b></div>
+									<table>
+										<tbody>
+											<tr>
+												<td class="noborder">
+													<img src="{% static 'img/plus.png' %}" alt="" class="but" style="cursor: pointer; cursor: hand; margin:2px;" title="" onclick="ShowDescription(&#39;{{testSuiteCase.parameter.id}}&#39;)" id="{{testSuiteCase.parameter.id}}Img">
+												</td>
+												<td class="noborder" nowrap>Описание проверки</td>
+											</tr>
+										</tbody>
+									</table>
+								<div style="display: none; font-size: smaller; width: 290px;" id="{{testSuiteCase.parameter.id}}Description">{{ testSuiteCase.parameter.info }}</div>
+							</td>
+							<td class="td11"></td>
+							<td class="td2" {% if testSuiteCase.status.text == 'OK' %}
+								style="color: green"
+							{% elif testSuiteCase.status.text == 'FAIL' %}
+								style="color: red"
+							{% endif %}><b>{{ testSuiteCase.status.text }}</b></td>
+							<td class="td3"><b>
+								{% if testSuiteCase.result|slice:"0:1" == '0' %}
+									<span style="color: green">
+								{% elif testSuiteCase.result|slice:"0:1" == '1' %}
+									<span style="color: red">
+								{% elif testSuiteCase.result|slice:"0:1" == '2' %}
+									<span style="color: yellow">
+								{% elif testSuiteCase.result|slice:"0:1" == '3' %}
+									<span style="color: blue">
+								{% endif %}
+							{{testSuiteCase.result|slice:"1:"|linebreaks}}</span></b></td>
+
+							<td class="td4"></td>
+						</tr>
+					{% endif %}
+					{% endfor %}
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+    <hr>
+        <div style="float: left; width: 100%" class="page-header"><br/><span style="margin: 10px 10px 10px 10px">2016 - <script type="text/javascript">
+                dt = new Date();document.write("" + dt.getFullYear());
+            </script> © Лабор Максим Николаевич<br/>
+            </span>
+            <br/>
+        </div>
+    </body>
+</html>

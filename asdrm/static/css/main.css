@@ -1,0 +1,120 @@
+BODY {
+	FONT-FAMILY: Cambria, Garamond, 'Times New Roman',serif; COLOR: #18455a; FONT-SIZE: 16px
+}
+TD {
+	FONT-FAMILY: Cambria, Garamond, 'Times New Roman',serif; COLOR: #18455a; FONT-SIZE: 16px
+}
+SELECT {
+	FONT-FAMILY: Cambria, Garamond, 'Times New Roman',serif; COLOR: #18455a; FONT-SIZE: 16px
+}
+OPTION {
+	FONT-FAMILY: Cambria, Garamond, 'Times New Roman',serif; COLOR: #18455a; FONT-SIZE: 16px
+}
+INPUT {
+	FONT-FAMILY: Cambria, Garamond, 'Times New Roman',serif; COLOR: #18455a; FONT-SIZE: 16px
+}
+TEXTAREA {
+	FONT-FAMILY: inherit
+}
+INPUT {
+	FONT-FAMILY: inherit
+}
+INPUT.but {
+	BACKGROUND-COLOR: #bdc7ce
+}
+TABLE {
+	BORDER-COLLAPSE: collapse; MARGIN-RIGHT: 0px
+}
+TABLE .TableResult{
+	 width: 100%;
+}
+TABLE.TransparentTable{
+	border: none border-color: white;
+}
+TD {
+	BORDER-BOTTOM: #8c9ead 1px solid; BORDER-LEFT: #8c9ead 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; VERTICAL-ALIGN: top; BORDER-TOP: #8c9ead 1px solid; BORDER-RIGHT: #8c9ead 1px solid; PADDING-TOP: 0px
+}
+TH {
+	BORDER-BOTTOM: #8c9ead 1px solid; BORDER-LEFT: #8c9ead 1px solid; PADDING-BOTTOM: 0px; PADDING-LEFT: 3px; PADDING-RIGHT: 3px; VERTICAL-ALIGN: top; BORDER-TOP: #8c9ead 1px solid; BORDER-RIGHT: #8c9ead 1px solid; PADDING-TOP: 0px; BACKGROUND-COLOR: #18455a; COLOR: white
+}
+.noborder {
+	BORDER-BOTTOM-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-TOP-STYLE: none; BORDER-LEFT-STYLE: none
+}
+H3 {
+	FONT-SIZE: 20px
+}
+CAPTION {
+	FONT-SIZE: large
+}
+A {
+	COLOR: #218ab5; TEXT-DECORATION: underline
+}
+
+A:hover {
+	COLOR: #e21a1a; TEXT-DECORATION: underline
+}
+DT {
+	BACKGROUND-COLOR: white; COLOR: black
+}
+IMG.but {
+	BORDER-BOTTOM: white 1px solid; BORDER-LEFT: white 1px solid; BORDER-TOP: white 1px solid; BORDER-RIGHT: white 1px solid
+}
+#StopButton:hover {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+.cimg:hover {
+	BORDER-BOTTOM: black 1px solid; BORDER-LEFT: black 1px solid; BORDER-TOP: black 1px solid; BORDER-RIGHT: black 1px solid
+}
+.cursorhand {
+	COLOR: #18455a; CURSOR: pointer
+}
+.cursorhand:hover {
+	COLOR: #e21a1a; TEXT-DECORATION: underline
+}
+.solidborder {
+	BORDER-BOTTOM: darkgray 1px solid; BORDER-LEFT: darkgray 1px solid; BORDER-TOP: darkgray 1px solid; BORDER-RIGHT: darkgray 1px solid
+}
+#StopButton {
+	BORDER-BOTTOM: white 1px solid; BORDER-LEFT: white 1px solid; BORDER-TOP: white 1px solid; CURSOR: pointer; BORDER-RIGHT: white 1px solid
+}
+.cimg {
+	BORDER-BOTTOM: white 1px solid; BORDER-LEFT: white 1px solid; BORDER-TOP: white 1px solid; CURSOR: pointer; BORDER-RIGHT: white 1px solid
+}
+P {
+	MARGIN: 6px 2px 4px
+}
+H1 {
+	MARGIN: 6px 2px 4px
+}
+H2 {
+	MARGIN: 6px 2px 4px
+}
+H3 {
+	MARGIN: 6px 2px 4px
+}
+caption {
+	MARGIN: 6px 2px 4px;
+}
+.nw {
+	WHITE-SPACE: nowrap
+}
+.username{
+	COLOR: RED;
+}
+.page-header {
+	background-color: #18455a;
+    COLOR: WHITE
+}
+.title_block{
+    font-size:20px; font-weight:bold; background-color:#BDC7CE
+}
+.hsrc{
+    float:bottom; border-right:1px none initial
+}
+.td1 { width:300px}
+.td11 { width:28px}
+.td2 { width:80px}
+.td3 { width:50%}
+.td4 { width:180px}
+
+
