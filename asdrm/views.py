@@ -67,7 +67,7 @@ def asdrm_main(request) :
                 TestParameter(name='Диски', title='ПК', info='Определяется текущее состояние заполнения дисковой системы. Выводится информация при свободном объеме каждого из дисков. ').save()
                 TestParameter(name='Последняя загрузка ОС', title='ПК', info='Определяется время последней перезагрузки ПК').save()
 
-                Auth(name = r'Starforge', passw = r'Passw9rd', domain = r'127.0.0.1').save()
+                Auth(name = r'Starforge', passw = r'Password', domain = r'127.0.0.1').save()
 
             # регистрируется время начала
             _start_date = timezone.now()
