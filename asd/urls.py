@@ -26,4 +26,7 @@ urlpatterns = [
     url(r'^list/', views.asdrm_testsuite_list, name='asdrm_testsuite_list'),
     # Представление ранее выполненной диагностики
     url(r'^complete/(?P<pk>[0-9]+)/$', views.asdrm_testsuite_complete, name='asdrm_testsuite_complete'),
+    url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
+    url(r'^login/$', views.LoginFormView.as_view(), name='login'),
+    url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
 ]

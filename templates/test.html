@@ -23,16 +23,25 @@
 						{% if user.is_authenticated %}
 							<a href="/admin/">{{ user.username }}</a></span>!&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						{% else %}
-							Аноним</span>, Вам необходимо
+                            </span>, Вам необходимо
 						{% endif %}
 					</b></td>
 					<td class="noborder"><b>
 						{% if user.is_authenticated %}
 							<a href="{% url 'asdrm_testsuite_list' %}">Аналитика (список выполненных проверок)</a></br>
 							<a href="/admin/">Администрирование сервера</a></br>
-							<a href="/admin/logout/">Выйти</a>
+							<a href="/logout/">Выйти</a>
 						{% else %}
 							<a href="/admin/">Представиться</a>, чтобы начать пользоваться системой диагностики.
+                            </br>
+                             <form action="" method="post">
+                                 {% csrf_token %}
+                                <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
+                                {{ form.as_p }}
+                                <button type="submit">Войти</button>
+                              </form>
+                            </br>
+                            <a href="/register/">Зарегистрироваться</a>
 						{% endif %}
 						</br></b></td>
 				</tr>
