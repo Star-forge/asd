@@ -1,20 +1,70 @@
 {% load staticfiles %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+    <style>
+        @font-face {
+            font-family: 'RZD';
+            /* Если шрифты в браузере отображаются не сглаженными, то сглаживание надо включить в ОС (Браузере).
+             Такая проблема известна в хром. В осле при этом все норм.
+             Это связано с отключенным по-умолчанию сглаживанием экранных шрифтов.*/
+            src: local(''),       /* sneakily trick IE */
+                url('{% static 'fonts/RussianRail G Pro Extend.otf' %}'), /* IE 5-8 */
+                url('{% static 'fonts/RussianRail G Pro Extend.woff2' %}') format('woff2'),  /*  */
+                url('{% static 'fonts/RussianRail G Pro Extend.woff' %}') format('woff'),  /* FF 3.6, Chrome 5, IE9 */
+                url('{% static 'fonts/RussianRail G Pro Extend.ttf' %}') format('truetype'), /* Opera, Safari */
+                url('{% static 'fonts/RussianRail G Pro Extend.svg' %}') format('svg'); /* iOS */
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'RZD Bold';
+            src: local(''),       /* sneakily trick IE */
+                url('{% static 'fonts/RussianRail G Pro Extended Bold.otf' %}'),
+                url('{% static 'fonts/RussianRail G Pro Extended Bold.woff2' %}') format('woff2'),  /*  */
+                url('{% static 'fonts/RussianRail G Pro Extended Bold.woff' %}') format('woff'),  /* FF 3.6, Chrome 5, IE9 */
+                url('{% static 'fonts/RussianRail G Pro Extended Bold.ttf' %}') format('truetype'), /* Opera, Safari */
+                url('{% static 'fonts/RussianRail G Pro Extended Bold.svg' %}') format('svg'); /* iOS */
+            font-weight: bold;
+            font-style: normal;
+        }
+         body{
+             font-family: 'RZD';
+         }
+
+    </style>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-        <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
-        <title>Список проверок</title>
+        <link rel="stylesheet" href="{% static 'css/_base.css' %}"/>
+        <titleРегистрация</title>
     </head>
-    <body>
-    	<a href="{% url 'asdrm_main' %}" class="nohand"  style="COLOR: white; TEXT-DECORATION: none; CURSOR: pointer;"><div class="page-header">
-            <h1 style="text-align:center"><br/>
-                <span id="page-header" style="text-transform: uppercase">Курсовой проект</span>
-                <br/><br/>
-                <span style="font-size:smaller">«Автоматизированная система дистанционной диагностики рабочего места пользователя диспетчерского центра управления железнодорожными перевозками»</span>
-                <span style="display: none; font-size:smaller">«Автоматизированная информационная система поддержки принятия решений системного администратора ЕДЦУ</span><br/><br/>
-            </h1>
-        </div></a>
+    <body class="body-main">
+    <table class="tbody header" border = "0" cellspacing="0">
+        <tbody>
+        <tr class="tbody-tr header"><td colspan="6"></td></tr>
+        <tr class="tbody-tr header"><td colspan="6"></td></tr>
+        <tr class="tbody-tr header">
+            <td class="tbody-td-1-header"></td>
+            <td colspan="4">
+                <b><span style= "font-family: 'RZD Bold'; text-transform: uppercase; font-size: 200%">Курсовой проект</span></b>
+            </td>
+            <td class="tbody-td-5-header"></td>
+        </tr>
+        <tr class="tbody-tr header">
+            <td class="tbody-td-1-header"></td>
+            <td colspan="4">
+                <b><span style="font-size:150%">«Автоматизированная система дистанционной диагностики рабочего места пользователя диспетчерского центра управления железнодорожными перевозками»</span>
+                <span style="display: none; font-size:smaller">«Автоматизированная информационная система поддержки принятия решений системного администратора ЕДЦУ</span></b>
+            </td>
+            <td class="tbody-td-5-header"></td>
+        </tr>
+        <tr class="tbody-tr header">
+            <td class="tbody-td-1-header"><img src="{% static 'img/1_line.png' %}" width="50pt" height="50pt"/></td>
+            <td class="tbody-td-2-header"><img src="{% static 'img/1_line.png' %}" width="100%" height="50pt"/></td>
+            <td class="tbody-td-3-header"><img src="{% static 'img/2_line.png' %}" width="50pt" height="50pt"/></td>
+            <td class="tbody-td-3-header"><img src="{% static 'img/3_line.png' %}" width="50pt" height="50pt"/></td>
+            <td class="tbody-td-4-header"><img src="{% static 'img/4_line.png' %}" width="50pt" height="50pt"/></td>
+            <td class="tbody-td-5-header"><img src="{% static 'img/5_line.png' %}" width="50pt" height="50pt"/></td>
+        </tr>
+        </tbody>
         {% if tests %}
             <div>
                 <br/>
@@ -26,7 +76,7 @@
 		    </div>
             <div>
             <h2>Список выполненных процедур диагностики</h2>
-            <table style="width:100%"><tbody>
+            <table style="width:100%" border="2"><tbody>
                 <tr>
                     <th class="td4">Дата начала</th>
                     <th class="td4">Время окончания</th>
@@ -58,5 +108,23 @@
 				</tr>
 			</tbody></table>
 		</div>
+<table class="tbody bottom" border = "0" cellspacing="0">
+        <tbody>
+        <tr class="tbody-tr bottom"><td colspan="4"></td></tr>
+        <tr class="tbody-tr bottom">
+            <td class="tbody-td-1-header"></td>
+            <td>
+                <b>2016 - <script type="text/javascript">
+                dt = new Date();document.write("" + dt.getFullYear());
+                </script> © Лабор Максим Николаевич</b>
+            </td>
+            <td class="tbody-td-4-header">
+                <img src="{% static 'img/logo_rzd.gif' %}" alt="РЖД" align="right"/>
+            </td>
+            <td class="tbody-td-5-header"></td>
+        </tr>
+        <tr class="tbody-tr bottom"><td colspan="4"></td></tr>
+        </tbody>
+    </table>
     </body>
 </html>
