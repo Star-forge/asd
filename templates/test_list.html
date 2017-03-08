@@ -64,56 +64,59 @@
             <td class="tbody-td-4-header"><img src="{% static 'img/4_line.png' %}" width="50pt" height="50pt"/></td>
             <td class="tbody-td-5-header"><img src="{% static 'img/5_line.png' %}" width="50pt" height="50pt"/></td>
         </tr>
-        </tbody>
-        {% if tests %}
+        <tr class="tbody-tr bottom">
+            <td class="tbody-td-1-header"></td>
+            <td colspan="4">
+            {% if tests %}
+                <div>
+                    <br/>
+                    <table><tbody>
+                        <tr>
+                            <td class="noborder"><b><a href="#" onclick="history.back();">Вернуться назад</a></b></td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <div>
+                <h2>Список выполненных процедур диагностики</h2>
+                <table style="width:100%" border="2"><tbody>
+                    <tr>
+                        <th class="td4">Дата начала</th>
+                        <th class="td4">Время окончания</th>
+                        <th class="td4">Адрес ПК / Проверить снова</th>
+                        <th class="td3">Пользователь выполнивший диагностику</th>
+                        <th class="td11">Просмотр результатов</th>
+                    </tr>
+                {% for test in tests %}
+                    <tr>
+                        <td class="td4">{{ test.start_date|date:"SHORT_DATE_FORMAT" }} {{ test.start_date|date:"H:i:s" }}</td>
+                        <td class="td4">{{ test.end_date|date:"H:i:s" }}</td>
+                        <td class="td4"><a href="/?ip={{ test.ipv4 }}" alt="Проверить снова">{{ test.ipv4 }}</a></td>
+                        <td class="td3">{{ test.user }}</td>
+                        <td class="td11"><a href="/complete/{{ test.pk }}" alt="Посмотреть результат"> Просмотреть {{ test.ipv4 }} >>></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody></table>
+            </div>
+            {% else %}
+            <div>
+                <h2>Список выполненных процедур диагностики <span style="color: red;">пуст</span></h2>
+            </div>
+            {% endif %}
             <div>
                 <br/>
-                <table><tbody>
+                <table style="border: 0"><tbody>
                     <tr>
                         <td class="noborder"><b><a href="#" onclick="history.back();">Вернуться назад</a></b></td>
                     </tr>
                 </tbody></table>
-		    </div>
-            <div>
-            <h2>Список выполненных процедур диагностики</h2>
-            <table style="width:100%" border="2"><tbody>
-                <tr>
-                    <th class="td4">Дата начала</th>
-                    <th class="td4">Время окончания</th>
-                    <th class="td4">Адрес ПК</th>
-                    <th class="td3">Пользователь выполнивший диагностику</th>
-                    <th class="td11">Ссылка</th>
-                </tr>
-            {% for test in tests %}
-                <tr>
-                    <td class="td4">{{ test.start_date|date:"SHORT_DATE_FORMAT" }} {{ test.start_date|date:"H:i:s" }}</td>
-                    <td class="td4">{{ test.end_date|date:"H:i:s" }}</td>
-                    <td class="td4"><a href="/?ip={{ test.ipv4 }}" alt="Проверить снова">{{ test.ipv4 }}</a></td>
-                    <td class="td3">{{ test.user }}</td>
-                    <td class="td11"><a href="/complete/{{ test.pk }}" alt="Посмотреть результат"> ==> </a></td>
-                </tr>
-            {% endfor %}
-            </tbody></table>
-        </div>
-        {% else %}
-        <div>
-            <h2>Список выполненных процедур диагностики <span style="color: red;">пуст</span></h2>
-        </div>
-        {% endif %}
-        <div>
-			<br/>
-            <table style="border: 0"><tbody>
-				<tr>
-					<td class="noborder"><b><a href="#" onclick="history.back();">Вернуться назад</a></b></td>
-				</tr>
-			</tbody></table>
-		</div>
-<table class="tbody bottom" border = "0" cellspacing="0">
-        <tbody>
-        <tr class="tbody-tr bottom"><td colspan="4"></td></tr>
+            </div>
+        </td>
+            <td class="tbody-td-5-header"></td>
+        </tr>
+        <tr class="tbody-tr bottom"><td colspan="6"></td></tr>
         <tr class="tbody-tr bottom">
             <td class="tbody-td-1-header"></td>
-            <td>
+            <td colspan="3">
                 <b>2016 - <script type="text/javascript">
                 dt = new Date();document.write("" + dt.getFullYear());
                 </script> © Лабор Максим Николаевич</b>
@@ -123,8 +126,7 @@
             </td>
             <td class="tbody-td-5-header"></td>
         </tr>
-        <tr class="tbody-tr bottom"><td colspan="4"></td></tr>
-        </tbody>
-    </table>
+        <tr class="tbody-tr bottom"><td colspan="6"></td></tr>
+        </tbody></table>
     </body>
 </html>
