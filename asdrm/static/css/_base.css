@@ -2,11 +2,11 @@
 .body-main { BACKGROUND-COLOR: white; }
 .header { BACKGROUND-COLOR: #c5c7c4; }
 .bottom { BACKGROUND-COLOR: white }
-.tbody { COLOR: black; width: 100%; BORDER-COLLAPSE: collapse;}
-.tbody-tr { COLOR: black; width: 100%; height: 30pt }
-.tbody-td-1-header{ min-width: 40pt; max-width: 50pt; padding: 0px; }
-.tbody-td-2-header{ width: 100%; padding: 0px;}
-.tbody-td-3-header{ min-width: 40pt; max-width: 50pt; padding: 0px; }
-.tbody-td-4-header{ min-width: 40pt; max-width: 50pt; padding: 0px; }
-.tbody-td-5-header{ min-width: 40pt; max-width: 50pt; padding: 0px; }
-.tbody-td-6-header{ min-width: 40pt; max-width: 50pt; padding: 0px; }
+.tbody { COLOR: black; width: 100%; BORDER-COLLAPSE: collapse; }
+.tbody-tr { COLOR: black; width: 100%; height: 50px }
+.tbody-td-1-header{ width: 50px; padding: 0px; }
+.tbody-td-2-header{ padding: 0px;}
+.tbody-td-3-header{ width: 50px; padding: 0px; }
+.tbody-td-4-header{ width: 50px; padding: 0px; }
+.tbody-td-5-header{ width: 50px; padding: 0px; }
+.tbody-td-6-header{ width: 50px; padding: 0px; }

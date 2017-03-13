@@ -1,3 +1,4 @@
+import sys
 from django.shortcuts import render, get_object_or_404
 # Импорт моделей
 from .models import Auth
@@ -75,6 +76,12 @@ class RegisterFormView(FormView):
 
 # Представление списка ранее выполненных диагностик
 def asdrm_testsuite_list(request) :
+    agent = request.META['HTTP_USER_AGENT']
+    if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
+        print("IE = "+request.META['HTTP_USER_AGENT'])
+    else:
+        print(request.META['HTTP_USER_AGENT'])
+
     # Выполнение запроса QuerySet к базе данных
     tests = TestSuite.objects.filter(start_date__lte=timezone.now()).order_by('start_date')
     # tests = TestCase.objects.filter(start_date__lte=testsuites).order_by('pk')
