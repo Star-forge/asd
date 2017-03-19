@@ -45,6 +45,7 @@ function GetObject(Name) {
     return document.getElementById(Name+"")
 }
 function doHeadlineVisibility() {
+    IP = '';
     IPField = GetObject("IP");
     var headline = document.getElementById("headline");
     var ieline = document.getElementById("ieline");

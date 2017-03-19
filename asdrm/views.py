@@ -90,34 +90,34 @@ class RegisterFormView(FormView):
 # Представление списка ранее выполненных диагностик
 @login_required
 def asdrm_testsuite_list(request) :
-    isIE8 = False
-    agent = request.META['HTTP_USER_AGENT']
-    if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
-        isIE8 = True
-        print("IE = "+request.META['HTTP_USER_AGENT'])
-    else:
-        print(request.META['HTTP_USER_AGENT'])
+    # isIE8 = False
+    # agent = request.META['HTTP_USER_AGENT']
+    # if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
+    #     isIE8 = True
+    #     print("IE = "+request.META['HTTP_USER_AGENT'])
+    # else:
+    #     print(request.META['HTTP_USER_AGENT'])
 
     # Выполнение запроса QuerySet к базе данных
     tests = TestSuite.objects.filter(start_date__lte=timezone.now()).order_by('start_date')
     # tests = TestCase.objects.filter(start_date__lte=testsuites).order_by('pk')
     # Возвращение отрисованной (готовой) страницы вместе с полученными из бд данными (шаблон+данные=готовая страница)
-    return render(request, 'test_list.html', {'tests': tests, 'isIE8': isIE8})
+    return render(request, 'test_list.html', {'tests': tests})
 
 # Представление ранее выполненной диагностики
 @login_required
 def asdrm_testsuite_complete(request, pk) :
-    isIE8 = False
-    agent = request.META['HTTP_USER_AGENT']
-    if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
-        isIE8 = True
-        print("IE = " + request.META['HTTP_USER_AGENT'])
-    else:
-        print(request.META['HTTP_USER_AGENT'])
+    # isIE8 = False
+    # agent = request.META['HTTP_USER_AGENT']
+    # if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
+    #     isIE8 = True
+    #     print("IE = " + request.META['HTTP_USER_AGENT'])
+    # else:
+    #     print(request.META['HTTP_USER_AGENT'])
 
     # Выполнение запроса QuerySet к базе данных - сли есть, то возврат, иначе 404
-    for ts in TestSuite.objects.all() :
-        print(ts.pk)
+    # for ts in TestSuite.objects.all() :
+    #     print(ts.pk)
     testSuite = get_object_or_404(TestSuite, pk=pk)
     # Получение списка параметров и их заголовков для заполнения таблицы
     testParams = TestParameter.objects.all().order_by('pk')
@@ -128,20 +128,19 @@ def asdrm_testsuite_complete(request, pk) :
                                          'user': request.user,
                                          'testParams': testParams,
                                          'testParamTitles': testParamTitles,
-                                         'testSuiteCases': testSuiteCases,
-                                         'isIE8': isIE8})
+                                         'testSuiteCases': testSuiteCases})
 
 
 # Представление основной страницы
 @login_required
 def asdrm_main(request) :
-    isIE8 = False
-    agent = request.META['HTTP_USER_AGENT']
-    if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
-        isIE8 = True
-        print("IE = " + request.META['HTTP_USER_AGENT'])
-    else:
-        print(request.META['HTTP_USER_AGENT'])
+    # isIE8 = False
+    # agent = request.META['HTTP_USER_AGENT']
+    # if ('MSIE 8.0'.lower() in agent.lower()) or ('compatible'.lower() in agent.lower()):
+    #     isIE8 = True
+    #     print("IE = " + request.META['HTTP_USER_AGENT'])
+    # else:
+    #     print(request.META['HTTP_USER_AGENT'])
 
     username = request.user
     # Если запрос GET (значит это запрос на диагностику) - параметры анализируются
@@ -366,13 +365,11 @@ def asdrm_main(request) :
                                                  'user': username,
                                                  'testParams': testParams,
                                                  'testParamTitles': testParamTitles,
-                                                 'testSuiteCases': testSuiteCases,
-                                                 'isIE8': isIE8})
+                                                 'testSuiteCases': testSuiteCases})
     # Если запрос не GET
     # else:
     #     ip = 0
 
     # Возвращение отрисованной (готовой) страницы вместе с полученными из бд данными (шаблон+данные=готовая страница)
     # Если это главная страница без нужных запросов - приветствуем пользователя
-    return render(request, 'test.html', {'user': username,
-                                         'isIE8': isIE8})
+    return render(request, 'test.html', {'user': username})
