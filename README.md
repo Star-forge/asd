@@ -10,6 +10,7 @@
 
 ## Требования
 Django==1.10.5  
+djangorestframework==3.6.2  
 pypiwin32==220  
 WMI==1.4.9  
 
