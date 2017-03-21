@@ -16,6 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from asdrm import views
+# REST
+from django.contrib.auth.models import User
+from rest_framework import routers
+
+# Routers provide a way of automatically determining the URL conf.
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet)
+router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
     # Открывать админку, если после адреса сайта идёт "admin/"
@@ -30,5 +38,9 @@ urlpatterns = [
     url(r'^register/$', views.RegisterFormView.as_view(), name='register'),
     #url(r'^login/$', views.LoginFormView.as_view(), name='login'),
     url(r'^logout/$', views.LogoutView.as_view(), name='logout'),
-    url('^', include('django.contrib.auth.urls'))
+    url('^', include('django.contrib.auth.urls')),
+    # REST
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
+
